@@ -62,3 +62,6 @@ workspace/
 
 # macOS
 *.DS_Store
+
+# Backup file ignore
+*.bak
