@@ -1,5 +1,6 @@
-this uses https://github.com/mineLdiver/Macula/pull/3 for java 8 support thank you fineless71
-no idea how to do any licencing
+this uses https://github.com/mineLdiver/Macula/pull/3 for java 8 support thank you fineless71.
+
+no idea how to do any licencing, just hope i'm not doing anything wrong.
 # Ornithe Template Mod
 
 The official Ornithe template mod. You can use it as a template for your own mods!
