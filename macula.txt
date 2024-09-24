@@ -1,0 +1,29 @@
+
+> Configure project :client
+Fabric Loom: 1.8.0-alpha.12
+Ploceus: 1.7.9
+
+> Configure project :server
+Fabric Loom: 1.8.0-alpha.12
+Ploceus: 1.7.9
+
+> Task :compileJava NO-SOURCE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :jar UP-TO-DATE
+> Task :assemble UP-TO-DATE
+> Task :compileTestJava NO-SOURCE
+> Task :processTestResources NO-SOURCE
+> Task :testClasses UP-TO-DATE
+> Task :test NO-SOURCE
+> Task :check UP-TO-DATE
+> Task :build UP-TO-DATE
+> Task :server:compileJava UP-TO-DATE
+> Task :server:processResources UP-TO-DATE
+> Task :server:classes UP-TO-DATE
+> Task :server:jar UP-TO-DATE
+> Task :server:compileTestJava NO-SOURCE
+> Task :server:processIncludeJars UP-TO-DATE
+> Task :client:compileJava UP-TO-DATE
+> Task :client:processResources FAILED
+8 actionable tasks: 1 executed, 7 up-to-date
