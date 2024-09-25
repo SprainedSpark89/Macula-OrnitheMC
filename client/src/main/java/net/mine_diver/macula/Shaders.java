@@ -2,6 +2,7 @@
 
 package net.mine_diver.macula;
 
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
@@ -34,7 +35,7 @@ import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
-public class Shaders {
+public class Shaders implements ModInitializer {
     private static boolean isInitialized = false;
 
     private static int renderWidth = 0;
@@ -1024,4 +1025,10 @@ public class Shaders {
         init();
         MinecraftInstance.get().worldRenderer.m_6748042();
     }
+
+	@Override
+	public void onInitialize() {
+		this.init();
+		
+	}
 }
