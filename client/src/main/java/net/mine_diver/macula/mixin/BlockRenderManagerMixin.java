@@ -13,7 +13,7 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 @Mixin(BlockRenderer.class)
 public class BlockRenderManagerMixin {
     @Inject(
-            method = "renderBottomFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateBottomFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderBottomFace(CallbackInfo ci) {
@@ -22,7 +22,7 @@ public class BlockRenderManagerMixin {
     }
 
     @Inject(
-            method = "renderTopFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateTopFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderTopFace(CallbackInfo ci) {
@@ -31,7 +31,7 @@ public class BlockRenderManagerMixin {
     }
 
     @Inject(
-            method = "renderEastFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateEastFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderEastFace(CallbackInfo ci) {
@@ -40,7 +40,7 @@ public class BlockRenderManagerMixin {
     }
 
     @Inject(
-            method = "renderWestFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateWestFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderWestFace(CallbackInfo ci) {
@@ -49,7 +49,7 @@ public class BlockRenderManagerMixin {
     }
 
     @Inject(
-            method = "renderNorthFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateNorthFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderNorthFace(CallbackInfo ci) {
@@ -58,7 +58,7 @@ public class BlockRenderManagerMixin {
     }
 
     @Inject(
-            method = "renderSouthFace(Lnet/minecraft/block/Block;DDDI)V",
+            method = "tessellateSouthFace(Lnet/minecraft/block/Block;DDDI)V",
             at = @At("HEAD")
     )
     private void onRenderSouthFace(CallbackInfo ci) {

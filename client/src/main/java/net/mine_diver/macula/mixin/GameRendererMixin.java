@@ -33,7 +33,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;setupCamera(FI)V"
+                    target = "Lnet/minecraft/client/render/GameRenderer;setupCamera(FI)V"
             )
     )
     private void setClearColor(float l, long par2, CallbackInfo ci) {
@@ -45,7 +45,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;setupCamera(FI)V",
+                    target = "Lnet/minecraft/client/render/GameRenderer;setupCamera(FI)V",
                     shift = At.Shift.AFTER
             )
     )
@@ -170,7 +170,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;renderSnowAndRain(F)V"
+                    target = "Lnet/minecraft/client/render/GameRenderer;renderSnowAndRain(F)V"
             )
     )
     private void injectBeginWeather(float l, long par2, CallbackInfo ci) {
@@ -182,7 +182,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;renderSnowAndRain(F)V",
+                    target = "Lnet/minecraft/client/render/GameRenderer;renderSnowAndRain(F)V",
                     shift = At.Shift.AFTER
             )
     )
@@ -195,7 +195,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;renderItemInHand(FI)V"
+                    target = "Lnet/minecraft/client/render/GameRenderer;renderItemInHand(FI)V"
             )
     )
     private void injectBeginHand(float l, long par2, CallbackInfo ci) {
@@ -207,7 +207,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/sortme/GameRenderer;renderItemInHand(FI)V",
+                    target = "Lnet/minecraft/client/render/GameRenderer;renderItemInHand(FI)V",
                     shift = At.Shift.AFTER
             )
     )

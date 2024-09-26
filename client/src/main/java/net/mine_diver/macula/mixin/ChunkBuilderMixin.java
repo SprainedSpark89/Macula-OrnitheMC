@@ -23,7 +23,7 @@ public class ChunkBuilderMixin {
             method = "compile()V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/block/BlockRenderer;render(Lnet/minecraft/block/BlockBase;III)Z"
+                    target = "Lnet/minecraft/client/render/block/BlockRenderer;tessellateBlock(Lnet/minecraft/block/Block;III)Z"
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
@@ -33,7 +33,7 @@ public class ChunkBuilderMixin {
             ((TessellatorAccessor) BufferBuilder.INSTANCE).setEntity(var19.id);
     }
 
-    @Inject(method = "method_296()V", at = @At(value = "RETURN"))
+    @Inject(method = "compile()V", at = @At(value = "RETURN"))
     private void onUpdateRenderer(CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
