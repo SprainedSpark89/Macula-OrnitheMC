@@ -48,7 +48,8 @@ class ScrollableShaders extends ListWidget {
     private void selectIndex(int index) {
         this.selectedIndex = index;
         this.lastClickedCached = this.lastClicked;
-        Shaders.setShaderPack(this.shaderslist.get(index));
+        Shaders shaders = new Shaders();
+		shaders.setShaderPack(this.shaderslist.get(index));
         shadersGui.updateButtons();
     }
 

@@ -17,7 +17,8 @@ public abstract class GameRendererMixin {
             at = @At("HEAD")
     )
     private void beginRender(float var1, long var2, CallbackInfo ci) {
-        Shaders.beginRender(minecraft, var1, var2);
+        Shaders shaders = new Shaders();
+		shaders.beginRender(minecraft, var1, var2);
     }
 
     @Inject(

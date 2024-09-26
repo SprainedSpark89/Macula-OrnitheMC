@@ -171,10 +171,10 @@ public class Shaders implements ModInitializer {
         loadConfig();
     }
 
-    private Shaders() {
+    public Shaders() {
     }
 
-    public static void init() {
+    public void onInitialize() {
         if (!(shaderPackLoaded = !currentShaderName.equals("OFF"))) return;
         int maxDrawBuffers = glGetInteger(GL_MAX_DRAW_BUFFERS);
 
@@ -329,12 +329,12 @@ public class Shaders implements ModInitializer {
         cameraPosition[2] = z;
     }
 
-    public static void beginRender(Minecraft minecraft, float f, long l) {
+    public void beginRender(Minecraft minecraft, float f, long l) {
         rainStrength = minecraft.world.getRain(f);
 
         if (isShadowPass) return;
 
-        if (!isInitialized) init();
+        if (!isInitialized) onInitialize();
         if (!shaderPackLoaded) return;
         if (MinecraftInstance.get().width != renderWidth || MinecraftInstance.get().height != renderHeight) resize();
 
@@ -1013,22 +1013,16 @@ public class Shaders implements ModInitializer {
         return null;
     }
 
-    public static void setShaderPack(String shaderPack) {
+    public void setShaderPack(String shaderPack) {
         currentShaderName = shaderPack;
         shadersConfig.setProperty(ShaderOption.SHADER_PACK.getPropertyKey(), shaderPack);
         loadShaderPack();
     }
 
-    public static void loadShaderPack() {
+    public void loadShaderPack() {
         destroy();
         isInitialized = false;
-        init();
+        onInitialize();
         MinecraftInstance.get().worldRenderer.m_6748042();
     }
-
-	@Override
-	public void onInitialize() {
-		this.init();
-		
-	}
 }

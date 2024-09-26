@@ -123,7 +123,8 @@ public class ShadersScreen extends Screen {
             switch (sob.getEnumShaderOption()) {
                 case SHADOW_RES_MUL:
                     Shaders.configShadowResMul = this.getNextValue(Shaders.configShadowResMul, QUALITY_MULTIPLIERS, QUALITY_MULTIPLIER_DEFAULT, !rightClick, Keyboard.isKeyDown(Keyboard.KEY_LSHIFT));
-                    Shaders.loadShaderPack();
+                    Shaders shaders = new Shaders();
+                    shaders.loadShaderPack();
                     break;
             }
             sob.updateButtonText();
