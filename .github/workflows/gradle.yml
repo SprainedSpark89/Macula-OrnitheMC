@@ -56,6 +56,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
+    - name: Remove org.gradle.java.home from gradle.properties
+      run: sed -i '/^org.gradle.java.home=C:\\\\Users\\\\redbl\\\\Downloads\\\\1.20.1_modern_beta\\\\.fabric\\\\server\\\\zulu17.42.19-ca-jdk17.0.7-win_x64\\\\zulu17.42.19-ca-jdk17.0.7-win_x64/d' gradle.properties
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
