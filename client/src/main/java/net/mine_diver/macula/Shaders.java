@@ -2,6 +2,7 @@
 
 package net.mine_diver.macula;
 
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.option.ShaderOption;
@@ -35,7 +36,7 @@ import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
-public class Shaders implements ModInitializer {
+public class Shaders implements ClientModInitializer {
     private static boolean isInitialized = false;
 
     private static int renderWidth = 0;
@@ -173,8 +174,9 @@ public class Shaders implements ModInitializer {
 
     public Shaders() {
     }
-
-    public void onInitialize() {
+    
+    @Override
+    public void onInitializeClient() {
         if (!(shaderPackLoaded = !currentShaderName.equals("OFF"))) return;
         int maxDrawBuffers = glGetInteger(GL_MAX_DRAW_BUFFERS);
 
@@ -334,7 +336,7 @@ public class Shaders implements ModInitializer {
 
         if (isShadowPass) return;
 
-        if (!isInitialized) onInitialize();
+        if (!isInitialized) onInitializeClient();
         if (!shaderPackLoaded) return;
         if (MinecraftInstance.get().width != renderWidth || MinecraftInstance.get().height != renderHeight) resize();
 
@@ -1022,7 +1024,7 @@ public class Shaders implements ModInitializer {
     public void loadShaderPack() {
         destroy();
         isInitialized = false;
-        onInitialize();
+        onInitializeClient();
         MinecraftInstance.get().worldRenderer.m_6748042();
     }
 }
