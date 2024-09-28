@@ -17,11 +17,6 @@
 	"license": "MIT",
 	"icon": "assets/macula/icon.png",
 	"environment": "${environment}",
-	"entrypoints": {
-		"init": [
-			"net.mine_diver.macula.Shaders"
-		]
-	},
 	"mixins": [
 		"macula.mixins.json"
 	],

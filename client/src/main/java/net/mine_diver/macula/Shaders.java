@@ -10,7 +10,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.ornithemc.osl.lifecycle.api.MinecraftEvents;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -36,7 +35,7 @@ import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
-public class Shaders implements ClientModInitializer {
+public class Shaders implements ClientModInitializer{
     private static boolean isInitialized = false;
 
     private static int renderWidth = 0;
@@ -173,14 +172,6 @@ public class Shaders implements ClientModInitializer {
     }
 
     public Shaders() {
-    }
-    
-    @Override
-    public void onInitializeClient() {
-    	MinecraftEvents.READY.register(minecraft -> {
-           init();
-            
-        });
     }
 
     public static void init() {
@@ -1034,4 +1025,10 @@ public class Shaders implements ClientModInitializer {
         init();
         MinecraftInstance.get().worldRenderer.m_6748042();
     }
+
+	@Override
+	public void onInitializeClient() {
+		// TODO Auto-generated method stub
+		
+	}
 }
