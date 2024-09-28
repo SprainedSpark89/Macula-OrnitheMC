@@ -3,15 +3,15 @@
 package net.mine_diver.macula;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.ornithemc.osl.lifecycle.api.MinecraftEvents;
+
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
@@ -177,6 +177,13 @@ public class Shaders implements ClientModInitializer {
     
     @Override
     public void onInitializeClient() {
+    	MinecraftEvents.READY.register(minecraft -> {
+           init();
+            
+        });
+    }
+
+    public static void init() {
         if (!(shaderPackLoaded = !currentShaderName.equals("OFF"))) return;
         int maxDrawBuffers = glGetInteger(GL_MAX_DRAW_BUFFERS);
 
@@ -331,12 +338,12 @@ public class Shaders implements ClientModInitializer {
         cameraPosition[2] = z;
     }
 
-    public void beginRender(Minecraft minecraft, float f, long l) {
+    public static void beginRender(Minecraft minecraft, float f, long l) {
         rainStrength = minecraft.world.getRain(f);
 
         if (isShadowPass) return;
 
-        if (!isInitialized) onInitializeClient();
+        if (!isInitialized) init();
         if (!shaderPackLoaded) return;
         if (MinecraftInstance.get().width != renderWidth || MinecraftInstance.get().height != renderHeight) resize();
 
@@ -1015,16 +1022,16 @@ public class Shaders implements ClientModInitializer {
         return null;
     }
 
-    public void setShaderPack(String shaderPack) {
+    public static void setShaderPack(String shaderPack) {
         currentShaderName = shaderPack;
         shadersConfig.setProperty(ShaderOption.SHADER_PACK.getPropertyKey(), shaderPack);
         loadShaderPack();
     }
 
-    public void loadShaderPack() {
+    public static void loadShaderPack() {
         destroy();
         isInitialized = false;
-        onInitializeClient();
+        init();
         MinecraftInstance.get().worldRenderer.m_6748042();
     }
 }
