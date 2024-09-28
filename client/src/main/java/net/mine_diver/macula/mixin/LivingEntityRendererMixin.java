@@ -13,7 +13,8 @@ public class LivingEntityRendererMixin {
             method = "*",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/opengl/GL11;glEnable(I)V"
+                    target = "Lorg/lwjgl/opengl/GL11;glEnable(I)V",
+                    remap = false
             )
     )
     private void onGlEnable(int i) {
@@ -28,7 +29,8 @@ public class LivingEntityRendererMixin {
             method = "*",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/opengl/GL11;glDisable(I)V"
+                    target = "Lorg/lwjgl/opengl/GL11;glDisable(I)V",
+                    remap = false
             )
     )
     private void onGlDisable(int i) {

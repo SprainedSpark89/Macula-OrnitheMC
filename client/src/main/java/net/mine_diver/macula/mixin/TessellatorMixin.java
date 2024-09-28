@@ -44,7 +44,8 @@ public class TessellatorMixin implements TessellatorAccessor {
             method = "end()V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/opengl/GL11;glDrawArrays(III)V"
+                    target = "Lorg/lwjgl/opengl/GL11;glDrawArrays(III)V",
+                    remap = false
             )
     )
     private void onDraw1(CallbackInfo ci) {
@@ -60,7 +61,8 @@ public class TessellatorMixin implements TessellatorAccessor {
             at = @At(
                     value = "INVOKE",
                     target = "Lorg/lwjgl/opengl/GL11;glDrawArrays(III)V",
-                    shift = At.Shift.AFTER
+                    shift = At.Shift.AFTER,
+                    remap = false
             )
     )
     private void onDraw2(CallbackInfo ci) {
