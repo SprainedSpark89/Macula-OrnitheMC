@@ -23,7 +23,7 @@ public class ChunkBuilderMixin {
             method = "compile()V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/block/BlockRenderer;tessellateBlock(Lnet/minecraft/block/Block;III)Z"
+                    target = "Lnet/minecraft/client/render/BlockRenderer;tessellateBlock(Lnet/minecraft/block/Block;III)Z"
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
