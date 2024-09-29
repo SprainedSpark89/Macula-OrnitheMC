@@ -15,7 +15,8 @@
     "ScrollableBaseAccessor",
     "TessellatorMixin",
     "WorldRendererMixin",
-    "gui.VideoSettingsScreenMixin"
+    "gui.VideoSettingsScreenMixin",
+	"MinecraftAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
