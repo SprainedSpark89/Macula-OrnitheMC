@@ -5,7 +5,7 @@ package net.mine_diver.macula;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.option.ShaderOption;
-import net.mine_diver.macula.util.OldMinecraftInstance;
+import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.living.LivingEntity;
@@ -270,7 +270,7 @@ public class Shaders implements ClientModInitializer{
     }
 
     public static void setCamera(float f) {
-        LivingEntity viewEntity = OldMinecraftInstance.get().camera;
+        LivingEntity viewEntity = MinecraftInstance.get().camera;
 
         double x = viewEntity.prevX + (viewEntity.x - viewEntity.prevX) * f;
         double y = viewEntity.prevY + (viewEntity.y - viewEntity.prevY) * f;
@@ -291,7 +291,7 @@ public class Shaders implements ClientModInitializer{
             glLoadIdentity();
             glTranslatef(0.0f, 0.0f, -100.0f);
             glRotatef(90.0f, 0.0f, 0.0f, -1.0f);
-            float angle = OldMinecraftInstance.get().world.getTimeOfDay(f) * 360.0f;
+            float angle = MinecraftInstance.get().world.getTimeOfDay(f) * 360.0f;
             // night time
             // day time
             if (angle < 90.0 || angle > 270.0) glRotatef(angle - 90.0f, -1.0f, 0.0f, 0.0f);
@@ -336,13 +336,13 @@ public class Shaders implements ClientModInitializer{
 
         if (!isInitialized) init();
         if (!shaderPackLoaded) return;
-        if (OldMinecraftInstance.get().width != renderWidth || OldMinecraftInstance.get().height != renderHeight) resize();
+        if (MinecraftInstance.get().width != renderWidth || MinecraftInstance.get().height != renderHeight) resize();
 
         if (shadowPassInterval > 0 && --shadowPassCounter <= 0) {
             // do shadow pass
-            boolean preShadowPassThirdPersonView = OldMinecraftInstance.get().options.debugEnabled;
+            boolean preShadowPassThirdPersonView = MinecraftInstance.get().options.debugEnabled;
 
-            OldMinecraftInstance.get().options.debugEnabled = true;
+            MinecraftInstance.get().options.debugEnabled = true;
 
             isShadowPass = true;
             shadowPassCounter = shadowPassInterval;
@@ -351,13 +351,13 @@ public class Shaders implements ClientModInitializer{
 
             useProgram(ProgramNone);
 
-            OldMinecraftInstance.get().gameRenderer.renderWorld(f, l);
+            MinecraftInstance.get().gameRenderer.renderWorld(f, l);
 
             glFlush();
 
             isShadowPass = false;
 
-            OldMinecraftInstance.get().options.debugEnabled = preShadowPassThirdPersonView;
+            MinecraftInstance.get().options.debugEnabled = preShadowPassThirdPersonView;
         }
 
         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, dfb);
@@ -486,9 +486,9 @@ public class Shaders implements ClientModInitializer{
     public static void beginTerrain() {
         useProgram(Shaders.ProgramTerrain);
         glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, OldMinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, OldMinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
         glActiveTexture(GL_TEXTURE0);
     }
 
@@ -499,9 +499,9 @@ public class Shaders implements ClientModInitializer{
     public static void beginWater() {
         useProgram(Shaders.ProgramWater);
         glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, OldMinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, OldMinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
         glActiveTexture(GL_TEXTURE0);
     }
 
@@ -534,8 +534,8 @@ public class Shaders implements ClientModInitializer{
     }
 
     private static void resize() {
-        renderWidth  = OldMinecraftInstance.get().width;
-        renderHeight = OldMinecraftInstance.get().height;
+        renderWidth  = MinecraftInstance.get().width;
+        renderHeight = MinecraftInstance.get().height;
         setupFrameBuffer();
     }
 
@@ -608,17 +608,17 @@ public class Shaders implements ClientModInitializer{
                 setProgramUniformMatrix4ARB("shadowModelViewInverse", false, shadowModelViewInverse);
             }
         }
-        ItemStack stack = OldMinecraftInstance.get().player.inventory.getMainHandStack();
+        ItemStack stack = MinecraftInstance.get().player.inventory.getMainHandStack();
         setProgramUniform1i("heldItemId", (stack == null ? -1 : stack.itemId));
         setProgramUniform1i("heldBlockLightValue", (stack == null || stack.itemId >= Block.BY_ID.length ? 0 : Block.LIGHT_LEVELS[stack.itemId]));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
-        setProgramUniform1i("worldTime", (int)(OldMinecraftInstance.get().world.getTime() % 24000L));
+        setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.getTime() % 24000L));
         setProgramUniform1f("aspectRatio", (float)renderWidth / (float)renderHeight);
         setProgramUniform1f("viewWidth", (float)renderWidth);
         setProgramUniform1f("viewHeight", (float)renderHeight);
         setProgramUniform1f("near", 0.05F);
-        setProgramUniform1f("far", 256 >> OldMinecraftInstance.get().options.viewDistance);
+        setProgramUniform1f("far", 256 >> MinecraftInstance.get().options.viewDistance);
         setProgramUniform3f("sunPosition", sunPosition[0], sunPosition[1], sunPosition[2]);
         setProgramUniform3f("moonPosition", moonPosition[0], moonPosition[1], moonPosition[2]);
         setProgramUniform3f("previousCameraPosition", (float)previousCameraPosition[0], (float)previousCameraPosition[1], (float)previousCameraPosition[2]);
@@ -1023,7 +1023,7 @@ public class Shaders implements ClientModInitializer{
         destroy();
         isInitialized = false;
         init();
-        OldMinecraftInstance.get().worldRenderer.m_6748042();
+        MinecraftInstance.get().worldRenderer.m_6748042();
     }
 
 	@Override
