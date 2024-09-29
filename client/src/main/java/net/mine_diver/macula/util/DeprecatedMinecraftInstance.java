@@ -2,7 +2,7 @@ package net.mine_diver.macula.util;
 
 import net.minecraft.client.Minecraft;
 
-public class DeprecatedMinecraftInstance extends MinecraftInstance {
+public class DeprecatedMinecraftInstance extends OldMinecraftInstance {
     public static Minecraft get() {
         try {
             // Check for the first method
