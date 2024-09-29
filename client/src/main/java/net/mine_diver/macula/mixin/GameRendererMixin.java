@@ -16,9 +16,9 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At("HEAD")
     )
-    private void beginRender(float var1, long var2, CallbackInfo ci) {
+    private void beginRender(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         //Shaders shaders = new Shaders();
-		Shaders.beginRender(minecraft, var1, var2);
+		Shaders.beginRender(minecraft, tickDelta, renderTimeLimit);
     }
 
     @Inject(
@@ -37,7 +37,7 @@ public abstract class GameRendererMixin {
                     target = "Lnet/minecraft/client/render/GameRenderer;setupCamera(FI)V"
             )
     )
-    private void setClearColor(float l, long par2, CallbackInfo ci) {
+    private void setClearColor(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setClearColor(fogRed, fogGreen, fogBlue);
     }
@@ -50,9 +50,9 @@ public abstract class GameRendererMixin {
                     shift = At.Shift.AFTER
             )
     )
-    private void setCamera(float l, long par2, CallbackInfo ci) {
+    private void setCamera(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
-        Shaders.setCamera(l);
+        Shaders.setCamera(renderTimeLimit);
     }
 
 
@@ -60,11 +60,11 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 0
             )
     )
-    private void injectTerrainBegin(float l, long par2, CallbackInfo ci) {
+    private void injectTerrainBegin(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.beginTerrain();
     }
@@ -74,12 +74,12 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 0,
                     shift = At.Shift.AFTER
             )
     )
-    private void injectTerrainEnd(float l, long par2, CallbackInfo ci) {
+    private void injectTerrainEnd(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.endTerrain();
     }
@@ -89,11 +89,11 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 1
             )
     )
-    private void injectWaterBegin1(float l, long par2, CallbackInfo ci) {
+    private void injectWaterBegin1(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.beginWater();
     }
@@ -103,12 +103,12 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 1,
                     shift = At.Shift.AFTER
             )
     )
-    private void injectWaterEnd1(float l, long par2, CallbackInfo ci) {
+    private void injectWaterEnd1(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.endWater();
     }
@@ -118,11 +118,11 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 2
             )
     )
-    private void injectWaterBegin2(float l, long par2, CallbackInfo ci) {
+    private void injectWaterBegin2(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.beginWater();
     }
@@ -132,7 +132,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/LivingEntity;ID)I",
                     ordinal = 2,
                     shift = At.Shift.AFTER
             )
@@ -146,7 +146,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(ID)V"
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(ID)V"
             )
     )
     private void injectBeginWater3(float l, long par2, CallbackInfo ci) {
@@ -158,7 +158,7 @@ public abstract class GameRendererMixin {
             method = "renderWorld(FJ)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/WorldRenderer;render(ID)V",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(ID)V",
                     shift = At.Shift.AFTER
             )
     )
