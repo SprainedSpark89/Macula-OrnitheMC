@@ -14,9 +14,16 @@ class ScrollableShaders extends ListWidget {
     private final long lastClicked = Long.MIN_VALUE;
     private long lastClickedCached = 0L;
     final ShadersScreen shadersGui;
+    int slotHeight;
+    
+    @Override
+    protected int getHeight() {
+		return this.size() * this.slotHeight + 0;
+	}
 
     public ScrollableShaders(ShadersScreen par1GuiShaders, int width, int height, int top, int bottom, int slotHeight) {
         super(par1GuiShaders.getMc(), width, height, top, bottom, slotHeight);
+        this.slotHeight = slotHeight;
         this.shadersGui = par1GuiShaders;
         this.updateList();
     }

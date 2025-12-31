@@ -328,9 +328,12 @@ public class Shaders implements ClientModInitializer{
         cameraPosition[1] = y;
         cameraPosition[2] = z;
     }
-
+    
+    /*                                                  tickDelta, 0*/
     public static void beginRender(Minecraft minecraft, float f, long l) {
-        rainStrength = minecraft.world.getRain(f);
+    	// no rain, but some versions have f5 rain, rain is this.prevRain + (this.rain - this.prevRain) * tickDelta
+    	// so make it do this [this.rain + 0.01], and prev rain is before it's set
+        rainStrength = 0; // rain disabled
 
         if (isShadowPass) return;
 

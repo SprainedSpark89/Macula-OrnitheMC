@@ -169,7 +169,7 @@ public abstract class GameRendererMixin {
         Shaders.endWater();
     }
 
-    @Inject(
+    /*@Inject(
             method = "renderWorld(F)V",
             at = @At(
                     value = "INVOKE",
@@ -192,7 +192,7 @@ public abstract class GameRendererMixin {
     private void injectEndWeather(float l, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.endWeather();
-    }
+    }*/
 
     @Inject(
             method = "renderWorld(F)V",
