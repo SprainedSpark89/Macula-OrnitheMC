@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.TextRenderer;
-import net.minecraft.resource.language.I18n;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
@@ -93,7 +92,7 @@ public class ShadersScreen extends Screen {
         //noinspection unchecked
         buttons.add(new ButtonWidget(SHADERS_FOLDER_BUTTON_ID, xFolder, yFolder, btnFolderWidth - 22 + 1, btnHeight, "Shaders Folder"));
         //noinspection unchecked
-        buttons.add(new ButtonWidget(DONE_BUTTON_ID, shaderListWidth / 4 * 3 - btnFolderWidth / 2, height - 25, btnFolderWidth, btnHeight, I18n.translate("gui.done")));
+        buttons.add(new ButtonWidget(DONE_BUTTON_ID, shaderListWidth / 4 * 3 - btnFolderWidth / 2, height - 25, btnFolderWidth, btnHeight, "Done"));
         updateButtons();
     }
 

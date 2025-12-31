@@ -489,9 +489,13 @@ public class Shaders implements ClientModInitializer{
     public static void beginTerrain() {
         useProgram(Shaders.ProgramTerrain);
         glActiveTexture(GL_TEXTURE2);
+        try {
         glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE3);
+        try {
         glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE0);
     }
 
@@ -502,9 +506,13 @@ public class Shaders implements ClientModInitializer{
     public static void beginWater() {
         useProgram(Shaders.ProgramWater);
         glActiveTexture(GL_TEXTURE2);
+        try {
         glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE3);
+        try {
         glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE0);
     }
 
