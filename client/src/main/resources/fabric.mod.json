@@ -22,7 +22,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.14.21",
-		"minecraft": "1.0.0-beta.6.2",
+		"minecraft": "1.0.0-beta.6.1",
 		"osl-entrypoints": ">=0.4.0"
 	}
 }
