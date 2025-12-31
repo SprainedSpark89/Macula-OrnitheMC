@@ -18,7 +18,7 @@ public abstract class GameRendererMixin {
     )
     private void beginRender(float tickDelta, long renderTimeLimit, CallbackInfo ci) {
         //Shaders shaders = new Shaders();
-		Shaders.beginRender(minecraft, tickDelta, renderTimeLimit);
+		Shaders.beginRender(minecraft, tickDelta, 0L);
     }
 
     @Inject(
