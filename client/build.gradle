@@ -1,1 +1,9 @@
 configure(project)
+project.loom {
+    runs {
+        client {
+            client()
+            vmArg "-Djava.util.Arrays.useLegacyMergeSort=true"
+        }
+    }
+}
