@@ -90,9 +90,9 @@ public class ShadersScreen extends Screen {
         final int xFolder = shaderListWidth / 4 - btnFolderWidth / 2;
         final int yFolder = height - 25;
         //noinspection unchecked
-        buttons.add(new ButtonWidget(SHADERS_FOLDER_BUTTON_ID, xFolder, yFolder, btnFolderWidth - 22 + 1, btnHeight, "Shaders Folder"));
+        buttons.add(new ButtonWidget(SHADERS_FOLDER_BUTTON_ID, xFolder, yFolder, "Shaders Folder"));
         //noinspection unchecked
-        buttons.add(new ButtonWidget(DONE_BUTTON_ID, shaderListWidth / 4 * 3 - btnFolderWidth / 2, height - 25, btnFolderWidth, btnHeight, "Done"));
+        buttons.add(new ButtonWidget(DONE_BUTTON_ID, (this.width - xFolder) - 200, height - 25, "Done"));
         updateButtons();
     }
 
