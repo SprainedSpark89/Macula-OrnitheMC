@@ -189,7 +189,7 @@ class ScrollableShaders {
 		GL11.glDisable(2896);
 		GL11.glDisable(2912);
 		BufferBuilder buffer = BufferBuilder.INSTANCE;
-		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/gui/background.png"));
+		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/dirt.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float repeat = 32.0F;
 		buffer.start();
@@ -298,7 +298,7 @@ class ScrollableShaders {
 
 	private void renderHoleBackground(int top, int bottom, int topAlpha, int bottomAlpha) {
 		BufferBuilder var5 = BufferBuilder.INSTANCE;
-		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/gui/background.png"));
+		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/dirt.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float var6 = 32.0F;
 		var5.start();
