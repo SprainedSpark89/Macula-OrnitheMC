@@ -270,7 +270,7 @@ public class Shaders implements ClientModInitializer{
     }
 
     public static void setCamera(float f) {
-        LivingEntity viewEntity = MinecraftInstance.get().camera;
+        LivingEntity viewEntity = MinecraftInstance.get().player;
 
         double x = viewEntity.prevX + (viewEntity.x - viewEntity.prevX) * f;
         double y = viewEntity.prevY + (viewEntity.y - viewEntity.prevY) * f;
@@ -624,7 +624,7 @@ public class Shaders implements ClientModInitializer{
         setProgramUniform1i("heldBlockLightValue", (stack == null || stack.itemId >= Block.BY_ID.length ? 0 : Block.LIGHT_LEVELS[stack.itemId]));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
-        setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.getTime() % 24000L));
+        setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.ticks % 24000L));
         setProgramUniform1f("aspectRatio", (float)renderWidth / (float)renderHeight);
         setProgramUniform1f("viewWidth", (float)renderWidth);
         setProgramUniform1f("viewHeight", (float)renderHeight);

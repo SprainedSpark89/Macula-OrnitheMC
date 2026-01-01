@@ -12,11 +12,10 @@
     "ChunkBuilderMixin",
     "GameRendererMixin",
     "LivingEntityRendererMixin",
-    "ScrollableBaseAccessor",
     "TessellatorMixin",
     "WorldRendererMixin",
     "gui.VideoSettingsScreenMixin",
-	"MinecraftAccessor"
+	"MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1
