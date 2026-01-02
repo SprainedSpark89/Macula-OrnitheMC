@@ -4,7 +4,6 @@ import net.mine_diver.macula.gui.ShadersScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.options.GameOptions;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -36,7 +35,7 @@ public class VideoSettingsScreenMixin extends Screen {
     )
     private void macula_shadersButtonClicked(ButtonWidget button, CallbackInfo ci) {
         if (button.id == MACULA$SHADERS_BUTTON_ID) {
-            minecraft.f_9967940.save();
+            minecraft.f_9967940.m_2313216();
             minecraft.m_6408915(new ShadersScreen(this));
             ci.cancel();
         }

@@ -1,7 +1,7 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.util.MinecraftInstance;
-import net.minecraft.unmapped.C_5664496;
+import net.minecraft.client.C_5664496;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;

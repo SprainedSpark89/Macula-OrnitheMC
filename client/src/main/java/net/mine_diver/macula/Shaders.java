@@ -4,12 +4,13 @@ package net.mine_diver.macula;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.mine_diver.macula.mixin.GameRendererInvoker;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.unmapped.C_5664496;
+import net.minecraft.client.C_5664496;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -343,9 +344,9 @@ public class Shaders implements ClientModInitializer{
 
         if (shadowPassInterval > 0 && --shadowPassCounter <= 0) {
             // do shadow pass
-            boolean preShadowPassThirdPersonView = MinecraftInstance.get().f_9967940.debugEnabled;
+            boolean preShadowPassThirdPersonView = MinecraftInstance.get().f_9967940.f_3094045;
 
-            MinecraftInstance.get().f_9967940.debugEnabled = true;
+            MinecraftInstance.get().f_9967940.f_3094045 = true;
 
             isShadowPass = true;
             shadowPassCounter = shadowPassInterval;
@@ -354,13 +355,13 @@ public class Shaders implements ClientModInitializer{
 
             useProgram(ProgramNone);
 
-            MinecraftInstance.get().f_4267957.m_5195666(f); // oh dear god
+            ((GameRendererInvoker)(Object)MinecraftInstance.get().f_4267957).renderWorld(f); // oh dear god
 
             glFlush();
 
             isShadowPass = false;
 
-            MinecraftInstance.get().f_9967940.debugEnabled = preShadowPassThirdPersonView;
+            MinecraftInstance.get().f_9967940.f_3094045 = preShadowPassThirdPersonView;
         }
 
         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, dfb);
@@ -629,7 +630,7 @@ public class Shaders implements ClientModInitializer{
         setProgramUniform1f("viewWidth", (float)renderWidth);
         setProgramUniform1f("viewHeight", (float)renderHeight);
         setProgramUniform1f("near", 0.05F);
-        setProgramUniform1f("far", 256 >> MinecraftInstance.get().f_9967940.viewDistance);
+        setProgramUniform1f("far", 256 >> MinecraftInstance.get().f_9967940.f_7110074);
         setProgramUniform3f("sunPosition", sunPosition[0], sunPosition[1], sunPosition[2]);
         setProgramUniform3f("moonPosition", moonPosition[0], moonPosition[1], moonPosition[2]);
         setProgramUniform3f("previousCameraPosition", (float)previousCameraPosition[0], (float)previousCameraPosition[1], (float)previousCameraPosition[2]);

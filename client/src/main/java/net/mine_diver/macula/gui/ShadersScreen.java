@@ -2,7 +2,7 @@ package net.mine_diver.macula.gui;
 
 import net.mine_diver.macula.Shaders;
 import net.mine_diver.macula.option.ShaderOption;
-import net.minecraft.unmapped.C_5664496;
+import net.minecraft.client.C_5664496;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.render.TextRenderer;

@@ -10,6 +10,7 @@
   "client": [
     "BlockRenderManagerMixin",
     "ChunkBuilderMixin",
+	"GameRendererInvoker",
     "GameRendererMixin",
     "LivingEntityRendererMixin",
     "TessellatorMixin",

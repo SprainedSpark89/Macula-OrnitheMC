@@ -1,6 +1,6 @@
 package net.mine_diver.macula.util;
 
-import net.minecraft.unmapped.C_5664496;
+import net.minecraft.client.C_5664496;
 
 public class MinecraftInstance {
 	public static C_5664496 INSTANCE;

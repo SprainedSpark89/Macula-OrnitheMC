@@ -1,7 +1,7 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.Shaders;
-import net.minecraft.unmapped.C_5664496;
+import net.minecraft.client.C_5664496;
 import net.minecraft.client.render.GameRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -203,7 +203,7 @@ public abstract class GameRendererMixin {
     	    method = "m_5195666(F)V",
     	    at = @At(
     	        value = "FIELD",
-    	        target = "Lnet/minecraft/client/options/GameOptions;anaglyph:Z", // 7 of these?
+    	        target = "Lnet/minecraft/client/C_1331819;f_5010661:Z", // 7 of these?
     	        opcode = Opcodes.GETFIELD,
     	        shift = At.Shift.BEFORE
     	    )
