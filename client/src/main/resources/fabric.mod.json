@@ -22,6 +22,6 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.16.0",
-		"minecraft": "minecraft-inf-20100630-1835-client"
+		"minecraft": "<=0.31.20100630-1835 >=0.31.20100630-1340"
 	}
 }
