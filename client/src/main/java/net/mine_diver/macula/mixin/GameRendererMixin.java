@@ -219,7 +219,8 @@ public abstract class GameRendererMixin {
     	        value = "INVOKE",
     	        target = "Lorg/lwjgl/opengl/GL11;glColorMask(ZZZZ)V", // 7th, so 6
     	        ordinal = 6,
-    	        shift = At.Shift.BEFORE
+    	        shift = At.Shift.BEFORE,
+        		remap = false
     	    )
     	)
     private void injectEndHand(float l, CallbackInfo ci) {
