@@ -21,7 +21,7 @@
 		"macula.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.14.21",
-		"minecraft": "<=1.0.0-alpha.0.5.1 >=1.0.0-alpha.0.1.1"
+		"fabricloader": ">=0.16.0",
+		"minecraft": "minecraft-inf-20100630-1835-client"
 	}
 }
