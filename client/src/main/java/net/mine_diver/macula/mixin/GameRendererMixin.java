@@ -5,6 +5,7 @@ import net.minecraft.unmapped.C_5664496;
 import net.minecraft.client.render.GameRenderer;
 
 import org.lwjgl.opengl.GL11;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At("HEAD")
     )
     private void beginRender(float tickDelta, CallbackInfo ci) {
@@ -23,7 +24,7 @@ public abstract class GameRendererMixin {
     }
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At("RETURN")
     )
     private void endRender(CallbackInfo ci) {
@@ -32,24 +33,27 @@ public abstract class GameRendererMixin {
         GL11.glGetError(); // yeet and delete
     }
 
+    
     @Inject(
-            method = "renderWorld(F)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/GameRenderer;setupCamera(FI)V"
-            )
-    )
+    		method = "m_5195666(F)V",
+    	    at = @At(
+    	        value = "FIELD", 
+    	        target = "Lnet/minecraft/client/render/GameRenderer;viewDistance:F", 
+    	        opcode = Opcodes.PUTFIELD,
+    	        shift = At.Shift.BEFORE
+    	    )
+    	)
     private void setClearColor(float tickDelta, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setClearColor(fogRed, fogGreen, fogBlue);
     }
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/GameRenderer;setupCamera(FI)V",
-                    shift = At.Shift.AFTER
+                    target = "Lnet/minecraft/client/render/Frustum;compute()Lnet/minecraft/client/render/FrustumData;",
+                    shift = At.Shift.BEFORE
             )
     )
     private void setCamera(float tickDelta, CallbackInfo ci) {
@@ -59,7 +63,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -73,7 +77,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -88,7 +92,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -102,7 +106,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -117,7 +121,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -131,7 +135,7 @@ public abstract class GameRendererMixin {
 
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
@@ -145,10 +149,10 @@ public abstract class GameRendererMixin {
     }
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(ID)V"
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render()V"
             )
     )
     private void injectBeginWater3(float l, CallbackInfo ci) {
@@ -157,10 +161,10 @@ public abstract class GameRendererMixin {
     }
 
     @Inject(
-            method = "renderWorld(F)V",
+            method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(ID)V",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render()V",
                     shift = At.Shift.AFTER
             )
     )
@@ -194,26 +198,30 @@ public abstract class GameRendererMixin {
         Shaders.endWeather();
     }*/
 
+    
     @Inject(
-            method = "renderWorld(F)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/GameRenderer;renderItemInHand(FI)V"
-            )
-    )
+    	    method = "m_5195666(F)V",
+    	    at = @At(
+    	        value = "FIELD",
+    	        target = "Lnet/minecraft/client/options/GameOptions;anaglyph:Z",
+    	        opcode = Opcodes.GETFIELD,
+    	        shift = At.Shift.BEFORE
+    	    )
+    	)
     private void injectBeginHand(float l, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.beginHand();
     }
 
     @Inject(
-            method = "renderWorld(F)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/GameRenderer;renderItemInHand(FI)V",
-                    shift = At.Shift.AFTER
-            )
-    )
+    	    method = "m_5195666(F)V",
+    	    at = @At(
+    	        value = "INVOKE",
+    	        target = "Lorg/lwjgl/opengl/GL11;glColorMask(ZZZZ)V", // 7th, so 6
+    	        ordinal = 6,
+    	        shift = At.Shift.BEFORE
+    	    )
+    	)
     private void injectEndHand(float l, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.endHand();

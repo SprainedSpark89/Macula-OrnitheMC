@@ -354,7 +354,7 @@ public class Shaders implements ClientModInitializer{
 
             useProgram(ProgramNone);
 
-            MinecraftInstance.get().f_4267957.renderWorld(f);
+            MinecraftInstance.get().f_4267957.m_5195666(f); // oh dear god
 
             glFlush();
 

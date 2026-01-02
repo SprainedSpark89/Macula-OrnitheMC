@@ -143,7 +143,7 @@ public class ShadersScreen extends Screen {
 
     @Override
     public void render(int i, int j, float f) {
-        renderBackground();
+    	drawBackgroundTexture();
         shaderList.render(i, j, f);
         if (updateTimer <= 0) {
             shaderList.updateList();
