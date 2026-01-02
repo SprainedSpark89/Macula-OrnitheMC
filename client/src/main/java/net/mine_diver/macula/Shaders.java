@@ -7,9 +7,9 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.unmapped.C_5664496;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -270,7 +270,7 @@ public class Shaders implements ClientModInitializer{
     }
 
     public static void setCamera(float f) {
-        LivingEntity viewEntity = MinecraftInstance.get().player;
+        LivingEntity viewEntity = MinecraftInstance.get().f_6058446;
 
         double x = viewEntity.prevX + (viewEntity.x - viewEntity.prevX) * f;
         double y = viewEntity.prevY + (viewEntity.y - viewEntity.prevY) * f;
@@ -291,7 +291,7 @@ public class Shaders implements ClientModInitializer{
             glLoadIdentity();
             glTranslatef(0.0f, 0.0f, -100.0f);
             glRotatef(90.0f, 0.0f, 0.0f, -1.0f);
-            float angle = MinecraftInstance.get().world.getTimeOfDay(f) * 360.0f;
+            float angle = MinecraftInstance.get().f_5854988.getTimeOfDay(f) * 360.0f;
             // night time
             // day time
             if (angle < 90.0 || angle > 270.0) glRotatef(angle - 90.0f, -1.0f, 0.0f, 0.0f);
@@ -330,7 +330,7 @@ public class Shaders implements ClientModInitializer{
     }
     
     /*                                                  tickDelta, 0*/
-    public static void beginRender(Minecraft minecraft, float f, long l) {
+    public static void beginRender(C_5664496 minecraft, float f, long l) {
     	// no rain, but some versions have f5 rain, rain is this.prevRain + (this.rain - this.prevRain) * tickDelta
     	// so make it do this [this.rain + 0.01], and prev rain is before it's set
         rainStrength = 0; // rain disabled
@@ -339,13 +339,13 @@ public class Shaders implements ClientModInitializer{
 
         if (!isInitialized) init();
         if (!shaderPackLoaded) return;
-        if (MinecraftInstance.get().width != renderWidth || MinecraftInstance.get().height != renderHeight) resize();
+        if (MinecraftInstance.get().f_0545414 != renderWidth || MinecraftInstance.get().f_5990000 != renderHeight) resize();
 
         if (shadowPassInterval > 0 && --shadowPassCounter <= 0) {
             // do shadow pass
-            boolean preShadowPassThirdPersonView = MinecraftInstance.get().options.debugEnabled;
+            boolean preShadowPassThirdPersonView = MinecraftInstance.get().f_9967940.debugEnabled;
 
-            MinecraftInstance.get().options.debugEnabled = true;
+            MinecraftInstance.get().f_9967940.debugEnabled = true;
 
             isShadowPass = true;
             shadowPassCounter = shadowPassInterval;
@@ -354,13 +354,13 @@ public class Shaders implements ClientModInitializer{
 
             useProgram(ProgramNone);
 
-            MinecraftInstance.get().gameRenderer.renderWorld(f);
+            MinecraftInstance.get().f_4267957.renderWorld(f);
 
             glFlush();
 
             isShadowPass = false;
 
-            MinecraftInstance.get().options.debugEnabled = preShadowPassThirdPersonView;
+            MinecraftInstance.get().f_9967940.debugEnabled = preShadowPassThirdPersonView;
         }
 
         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, dfb);
@@ -490,11 +490,11 @@ public class Shaders implements ClientModInitializer{
         useProgram(Shaders.ProgramTerrain);
         glActiveTexture(GL_TEXTURE2);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().f_9413506.load("/terrain_nh.png"));
         } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE3);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().f_9413506.load("/terrain_s.png"));
         } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE0);
     }
@@ -507,11 +507,11 @@ public class Shaders implements ClientModInitializer{
         useProgram(Shaders.ProgramWater);
         glActiveTexture(GL_TEXTURE2);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().f_9413506.load("/terrain_nh.png"));
         } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE3);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().f_9413506.load("/terrain_s.png"));
         } catch(IllegalArgumentException e) {}
         glActiveTexture(GL_TEXTURE0);
     }
@@ -545,8 +545,8 @@ public class Shaders implements ClientModInitializer{
     }
 
     private static void resize() {
-        renderWidth  = MinecraftInstance.get().width;
-        renderHeight = MinecraftInstance.get().height;
+        renderWidth  = MinecraftInstance.get().f_0545414;
+        renderHeight = MinecraftInstance.get().f_5990000;
         setupFrameBuffer();
     }
 
@@ -619,17 +619,17 @@ public class Shaders implements ClientModInitializer{
                 setProgramUniformMatrix4ARB("shadowModelViewInverse", false, shadowModelViewInverse);
             }
         }
-        ItemStack stack = MinecraftInstance.get().player.inventory.getMainHandStack();
+        ItemStack stack = MinecraftInstance.get().f_6058446.inventory.getMainHandStack();
         setProgramUniform1i("heldItemId", (stack == null ? -1 : stack.itemId));
         setProgramUniform1i("heldBlockLightValue", (stack == null || stack.itemId >= Block.BY_ID.length ? 0 : Block.LIGHT_LEVELS[stack.itemId]));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
-        setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.ticks % 24000L));
+        setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().f_5854988.ticks % 24000L));
         setProgramUniform1f("aspectRatio", (float)renderWidth / (float)renderHeight);
         setProgramUniform1f("viewWidth", (float)renderWidth);
         setProgramUniform1f("viewHeight", (float)renderHeight);
         setProgramUniform1f("near", 0.05F);
-        setProgramUniform1f("far", 256 >> MinecraftInstance.get().options.viewDistance);
+        setProgramUniform1f("far", 256 >> MinecraftInstance.get().f_9967940.viewDistance);
         setProgramUniform3f("sunPosition", sunPosition[0], sunPosition[1], sunPosition[2]);
         setProgramUniform3f("moonPosition", moonPosition[0], moonPosition[1], moonPosition[2]);
         setProgramUniform3f("previousCameraPosition", (float)previousCameraPosition[0], (float)previousCameraPosition[1], (float)previousCameraPosition[2]);
@@ -1034,7 +1034,7 @@ public class Shaders implements ClientModInitializer{
         destroy();
         isInitialized = false;
         init();
-        MinecraftInstance.get().worldRenderer.m_6748042();
+        MinecraftInstance.get().f_4021716.m_6748042();
     }
 
 	@Override

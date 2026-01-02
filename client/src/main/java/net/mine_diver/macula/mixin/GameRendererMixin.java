@@ -1,7 +1,7 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.Shaders;
-import net.minecraft.client.Minecraft;
+import net.minecraft.unmapped.C_5664496;
 import net.minecraft.client.render.GameRenderer;
 
 import org.lwjgl.opengl.GL11;
@@ -220,7 +220,7 @@ public abstract class GameRendererMixin {
     }
 
     @Shadow
-    private Minecraft minecraft;
+    private C_5664496 minecraft;
     @Shadow
     float
             fogRed,

@@ -1,20 +1,20 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.util.MinecraftInstance;
-import net.minecraft.client.Minecraft;
+import net.minecraft.unmapped.C_5664496;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(Minecraft.class)
+@Mixin(C_5664496.class)
 public class MinecraftMixin {
     //@Accessor("INSTANCE")
 	
 	
 	@Inject(method = "<init>", at = @At("RETURN"))
     private void onInit(CallbackInfo ci) {
-        MinecraftInstance.INSTANCE = (Minecraft)(Object)this; // store the created instance
+        MinecraftInstance.INSTANCE = (C_5664496)(Object)this; // store the created instance
     }
 	
 }

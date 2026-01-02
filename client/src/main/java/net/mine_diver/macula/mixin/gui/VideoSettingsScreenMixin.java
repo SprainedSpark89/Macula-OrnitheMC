@@ -36,8 +36,8 @@ public class VideoSettingsScreenMixin extends Screen {
     )
     private void macula_shadersButtonClicked(ButtonWidget button, CallbackInfo ci) {
         if (button.id == MACULA$SHADERS_BUTTON_ID) {
-            minecraft.options.save();
-            minecraft.openScreen(new ShadersScreen(this));
+            minecraft.f_9967940.save();
+            minecraft.m_6408915(new ShadersScreen(this));
             ci.cancel();
         }
     }

@@ -2,7 +2,7 @@ package net.mine_diver.macula.gui;
 
 import net.mine_diver.macula.Shaders;
 import net.mine_diver.macula.mixin.ScrollableBaseAccessor;
-import net.minecraft.client.Minecraft;
+import net.minecraft.unmapped.C_5664496;
 import net.minecraft.client.gui.widget.ButtonWidget;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 import com.mojang.blaze3d.vertex.BufferBuilder;
 
 class ScrollableShaders {
-	private final Minecraft minecraft;
+	private final C_5664496 minecraft;
 	protected final int width;
 	private final int height;
 	private final int minY;
@@ -189,7 +189,7 @@ class ScrollableShaders {
 		GL11.glDisable(2896);
 		GL11.glDisable(2912);
 		BufferBuilder buffer = BufferBuilder.INSTANCE;
-		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/dirt.png"));
+		GL11.glBindTexture(3553, this.minecraft.f_9413506.load("/dirt.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float repeat = 32.0F;
 		buffer.start();
@@ -298,7 +298,7 @@ class ScrollableShaders {
 
 	private void renderHoleBackground(int top, int bottom, int topAlpha, int bottomAlpha) {
 		BufferBuilder var5 = BufferBuilder.INSTANCE;
-		GL11.glBindTexture(3553, this.minecraft.textureManager.load("/dirt.png"));
+		GL11.glBindTexture(3553, this.minecraft.f_9413506.load("/dirt.png"));
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float var6 = 32.0F;
 		var5.start();
