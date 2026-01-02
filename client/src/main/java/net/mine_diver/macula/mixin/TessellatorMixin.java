@@ -3,8 +3,9 @@ package net.mine_diver.macula.mixin;
 import net.mine_diver.macula.Shaders;
 import net.mine_diver.macula.util.TessellatorAccessor;
 
-import com.mojang.blaze3d.platform.MemoryTracker;
 import com.mojang.blaze3d.vertex.BufferBuilder;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.ARBVertexProgram;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,7 +37,7 @@ public class TessellatorMixin implements TessellatorAccessor {
     )
     private void onCor(int var1, CallbackInfo ci) {
         shadersData = new short[] {-1, 0};
-        shadersBuffer = MemoryTracker.createByteBuffer(var1 / 8 * 4);
+        shadersBuffer = BufferUtils.createByteBuffer(var1 / 8 * 4);
         shadersShortBuffer = shadersBuffer.asShortBuffer();
     }
 

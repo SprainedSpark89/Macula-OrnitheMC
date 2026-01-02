@@ -203,7 +203,7 @@ public abstract class GameRendererMixin {
     	    method = "m_5195666(F)V",
     	    at = @At(
     	        value = "FIELD",
-    	        target = "Lnet/minecraft/client/options/GameOptions;anaglyph:Z",
+    	        target = "Lnet/minecraft/client/options/GameOptions;anaglyph:Z", // 7 of these?
     	        opcode = Opcodes.GETFIELD,
     	        shift = At.Shift.BEFORE
     	    )
@@ -219,7 +219,8 @@ public abstract class GameRendererMixin {
     	        value = "INVOKE",
     	        target = "Lorg/lwjgl/opengl/GL11;glColorMask(ZZZZ)V", // 7th, so 6
     	        ordinal = 6,
-    	        shift = At.Shift.BEFORE
+    	        shift = At.Shift.BEFORE,
+    	        remap = false
     	    )
     	)
     private void injectEndHand(float l, CallbackInfo ci) {
