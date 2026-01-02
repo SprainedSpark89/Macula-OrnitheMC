@@ -7,7 +7,6 @@ import net.minecraft.client.render.world.RenderChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
@@ -24,7 +23,7 @@ public class ChunkBuilderMixin {
         ),
         locals = LocalCapture.NO_CAPTURE
     )
-    private void onRenderBlockByRenderType(CallbackInfoReturnable ci) {
+    private void onRenderBlockByRenderType(CallbackInfoReturnable<?> ci) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
             ((TessellatorAccessor)(Object) BufferBuilder.INSTANCE).setEntity(-1); // fallback
