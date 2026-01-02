@@ -7,7 +7,7 @@ import net.minecraft.client.render.world.RenderChunk;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -16,21 +16,21 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 public class ChunkBuilderMixin {
 
     @Inject(
-        method = "compile()Z",
+        method = "compile()V",
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/render/BlockRenderer;tessellateLiquid(Lnet/minecraft/block/Block;III)Z"
         ),
         locals = LocalCapture.NO_CAPTURE
     )
-    private void onRenderBlockByRenderType(CallbackInfoReturnable<?> ci) {
+    private void onRenderBlockByRenderType(CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
             ((TessellatorAccessor)(Object) BufferBuilder.INSTANCE).setEntity(-1); // fallback
     }
 
-    @Inject(method = "compile()Z", at = @At("RETURN"))
-    private void onUpdateRenderer(CallbackInfoReturnable<Boolean> cir) {
+    @Inject(method = "compile()V", at = @At("RETURN"))
+    private void onUpdateRenderer(CallbackInfo cir) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
             ((TessellatorAccessor)(Object) BufferBuilder.INSTANCE).setEntity(-1);

@@ -32,12 +32,13 @@ public class TessellatorMixin implements TessellatorAccessor {
     @Shadow private int index;
 
     @Inject(
-            method = "<init>(I)V",
+            method = "<init>()V",
             at = @At("RETURN")
     )
-    private void onCor(int var1, CallbackInfo ci) {
+    private void onCor(CallbackInfo ci) {
         shadersData = new short[] {-1, 0};
-        shadersBuffer = BufferUtils.createByteBuffer(var1 / 8 * 4);
+        shadersBuffer = BufferUtils.createByteBuffer((2097120+32) / 8 * 4); // in inf-625 it's this.size - 32 in an if statement, and in 618, it's 2097120, so it's to be assumed that the full number is that + 32
+        // but sadly it's unknown due to the size variable never going used in the init in the first place, and size is just 2097152
         shadersShortBuffer = shadersBuffer.asShortBuffer();
     }
 
