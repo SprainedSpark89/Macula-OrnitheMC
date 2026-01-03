@@ -24,6 +24,30 @@ public abstract class GameRendererMixin {
 		GL11.glEnable(2929);
 	}
 	
+	/*@Inject(
+            method = "m_5195666(F)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/render/GameRenderer;renderFog()V",
+                    ordinal = 0
+            )
+    )
+    private void cancelFirstFog(CallbackInfo ci) {
+        //ci.cancel();
+    }
+	
+	@Inject(
+            method = "m_5195666(F)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;renderSky(F)V",
+                    ordinal = 0
+            )
+    )
+    private void cancelSkyRender(CallbackInfo ci) {
+        //ci.cancel();
+    }*/
+	
     @Inject(
             method = "m_5195666(F)V",
             at = @At("HEAD")

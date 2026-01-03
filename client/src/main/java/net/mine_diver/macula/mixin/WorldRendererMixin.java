@@ -13,6 +13,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
+	/*@Inject(
+            method = "renderSky(F)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lorg/lwjgl/opengl/GL11;glDepthMask(Z)V",
+                    ordinal = 0,
+                    shift = At.Shift.AFTER,
+                    remap = false
+            )
+    )
+    private void depthFix1(float par1, CallbackInfo ci) {
+		if (!Shaders.shaderPackLoaded) {
+            GL11.glEnable(2912);
+            return;
+        }
+        Shaders.glEnableWrapper(2912);
+    }*/
+	
     @Inject(
             method = "renderSky(F)V",
             at = @At(
@@ -22,6 +40,7 @@ public class WorldRendererMixin {
             )
     )
     private void onGetStarBrightness(float par1, CallbackInfo ci) {
+    	onGlDisable(2884);
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setCelestialPosition();
     }
