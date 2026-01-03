@@ -15,6 +15,7 @@
     "LivingEntityRendererMixin",
     "TessellatorMixin",
     "WorldRendererMixin",
+	"WorldRendererInvoker",
     "gui.VideoSettingsScreenMixin",
 	"MinecraftMixin"
   ],

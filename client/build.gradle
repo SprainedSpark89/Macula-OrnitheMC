@@ -5,7 +5,7 @@ project.loom {
         client {
             client()
             vmArg "-Djava.util.Arrays.useLegacyMergeSort=true"
-            vmArg "-Dfabric.gameVersion=0.31.20100618"
+            vmArg "-Dfabric.gameVersion=0.31.20100615"
         }
     }
 }

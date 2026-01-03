@@ -5,6 +5,7 @@ package net.mine_diver.macula;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.mixin.GameRendererInvoker;
+import net.mine_diver.macula.mixin.WorldRendererInvoker;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
@@ -1035,7 +1036,7 @@ public class Shaders implements ClientModInitializer{
         destroy();
         isInitialized = false;
         init();
-        MinecraftInstance.get().f_4021716.m_6748042();
+        ((WorldRendererInvoker)(Object)MinecraftInstance.get().f_4021716).refreshResources();
     }
 
 	@Override
