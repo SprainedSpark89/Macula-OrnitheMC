@@ -102,7 +102,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;I)I",
                     ordinal = 0
             )
     )
@@ -116,7 +116,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;I)I",
                     ordinal = 0,
                     shift = At.Shift.AFTER
             )
@@ -131,7 +131,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;I)I",
                     ordinal = 1
             )
     )
@@ -145,7 +145,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;I)I",
                     ordinal = 1,
                     shift = At.Shift.AFTER
             )
@@ -160,7 +160,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V"//,
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_5654325()V"//,
                     
             )
     )
@@ -174,7 +174,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_5654325()V",
                     
                     shift = At.Shift.AFTER
             )
@@ -188,7 +188,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V"
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_5654325()V"
             )
     )
     private void injectBeginWater3(float l, CallbackInfo ci) {
@@ -200,7 +200,7 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V",
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_5654325()V",
                     shift = At.Shift.AFTER
             )
     )

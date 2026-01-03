@@ -1,4 +1,4 @@
-package net.mine_diver.macula.mixin;
+/*package net.mine_diver.macula.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -10,3 +10,4 @@ public interface WorldRendererInvoker {
 	@Invoker("m_6748042")
 	void refreshResources();
 }
+*/

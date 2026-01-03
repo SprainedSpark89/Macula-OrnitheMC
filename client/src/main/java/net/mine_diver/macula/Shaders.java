@@ -5,8 +5,8 @@ package net.mine_diver.macula;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.macula.mixin.GameRendererInvoker;
-import net.mine_diver.macula.mixin.WorldAccessor;
-import net.mine_diver.macula.mixin.WorldRendererInvoker;
+//import net.mine_diver.macula.mixin.WorldAccessor;
+//import net.mine_diver.macula.mixin.WorldRendererInvoker;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
@@ -294,7 +294,7 @@ public class Shaders implements ClientModInitializer{
             glLoadIdentity();
             glTranslatef(0.0f, 0.0f, -100.0f);
             glRotatef(90.0f, 0.0f, 0.0f, -1.0f);
-            float angle = MinecraftInstance.get().f_5854988.getTimeOfDay(f) * 360.0f;
+            float angle = 0 * 360.0f; // undo indev
             // night time
             // day time
             if (angle < 90.0 || angle > 270.0) glRotatef(angle - 90.0f, -1.0f, 0.0f, 0.0f);
@@ -627,7 +627,7 @@ public class Shaders implements ClientModInitializer{
         setProgramUniform1i("heldBlockLightValue", (stack == null || stack.itemId >= Block.BY_ID.length ? 0 : Block.LIGHT_LEVELS[stack.itemId]));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
-        setProgramUniform1i("worldTime", (int)(((WorldAccessor)(Object)MinecraftInstance.get().f_5854988).getTicks() % 24000L));
+        setProgramUniform1i("worldTime", (int)((0 % 24000L))); // indev undo
         setProgramUniform1f("aspectRatio", (float)renderWidth / (float)renderHeight);
         setProgramUniform1f("viewWidth", (float)renderWidth);
         setProgramUniform1f("viewHeight", (float)renderHeight);
@@ -1037,7 +1037,7 @@ public class Shaders implements ClientModInitializer{
         destroy();
         isInitialized = false;
         init();
-        ((WorldRendererInvoker)(Object)MinecraftInstance.get().f_4021716).refreshResources();
+        MinecraftInstance.get().f_4021716.setWorld(MinecraftInstance.get().f_5854988); // reload resources, undo in indev if possible
     }
 
 	@Override

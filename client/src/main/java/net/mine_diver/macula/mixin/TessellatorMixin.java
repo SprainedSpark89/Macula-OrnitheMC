@@ -83,7 +83,7 @@ public class TessellatorMixin implements TessellatorAccessor {
     }
 
     @Inject(
-            method = "vertex(DDD)V",
+            method = "vertex(FFF)V",
             at = @At(value = "HEAD")
     )
     private void onAddVertex(CallbackInfo ci) {
