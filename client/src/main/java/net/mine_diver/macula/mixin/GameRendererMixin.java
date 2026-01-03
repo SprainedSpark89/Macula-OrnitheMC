@@ -134,8 +134,8 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
-                    ordinal = 2
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V"//,
+                    
             )
     )
     private void injectWaterBegin2(float tickDelta, CallbackInfo ci) {
@@ -148,8 +148,8 @@ public abstract class GameRendererMixin {
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/world/WorldRenderer;render(Lnet/minecraft/entity/living/player/PlayerEntity;ID)I",
-                    ordinal = 2,
+                    target = "Lnet/minecraft/client/render/world/WorldRenderer;m_0907931(ID)V",
+                    
                     shift = At.Shift.AFTER
             )
     )

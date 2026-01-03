@@ -25,7 +25,7 @@ public class TessellatorMixin implements TessellatorAccessor {
 
     @Shadow private int nextVertexCount;
 
-    @Shadow private boolean hasNormals;
+    //@Shadow private boolean hasNormals;
 
     @Shadow private int[] buffer;
 
@@ -88,7 +88,7 @@ public class TessellatorMixin implements TessellatorAccessor {
     )
     private void onAddVertex(CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
-        if (drawMode == 7 && f_5537920 && (nextVertexCount + 1) % 4 == 0 && hasNormals) {
+        if (drawMode == 7 && f_5537920 && (nextVertexCount + 1) % 4 == 0) {
             buffer[index + 6] = buffer[(index - 24) + 6];
             shadersBuffer.putShort(shadersData[0]).putShort(shadersData[1]);
             buffer[index + 8 + 6] = buffer[(index + 8 - 16) + 6];
