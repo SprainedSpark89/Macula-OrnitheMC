@@ -14,6 +14,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
+	
+	@Inject(
+            method = "setupGuiState()V",
+            at = @At("RETURN")
+    )
+	private void depthFix(CallbackInfo ci) { // annoying: yes, convenient function to aid with a fix: yes
+		GL11.glDisable(2929);
+		GL11.glEnable(2929);
+	}
+	
     @Inject(
             method = "m_5195666(F)V",
             at = @At("HEAD")
