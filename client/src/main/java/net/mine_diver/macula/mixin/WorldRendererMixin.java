@@ -40,7 +40,6 @@ public class WorldRendererMixin {
             )
     )
     private void onGetStarBrightness(float par1, CallbackInfo ci) {
-    	onGlDisable(2884);
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setCelestialPosition();
     }
