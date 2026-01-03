@@ -30,6 +30,22 @@ public class WorldRendererMixin {
         }
         Shaders.glEnableWrapper(2912);
     }*/
+
+	@Redirect (
+            method = "renderSky(F)V",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lorg/lwjgl/opengl/GL11;glCallList(I)V", // 0
+                    ordinal = 0,
+                    remap = false
+            )
+    )
+    private void noClouds(int i) {
+        //ci.cancel();
+    }
+	
+
+
 	
     @Inject(
             method = "renderSky(F)V",

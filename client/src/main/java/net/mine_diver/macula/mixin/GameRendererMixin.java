@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GameRenderer.class)
@@ -23,6 +24,7 @@ public abstract class GameRendererMixin {
 		GL11.glDisable(2929);
 		GL11.glEnable(2929);
 	}
+
 	
 	/*@Inject(
             method = "m_5195666(F)V",
