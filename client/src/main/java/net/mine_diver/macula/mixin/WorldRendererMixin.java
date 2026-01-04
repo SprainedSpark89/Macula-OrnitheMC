@@ -41,8 +41,7 @@ public class WorldRendererMixin {
             )
     )
     private void hideSky(BufferBuilder bb, float r, float g, float b) {
-		bb.color(r, g, b);
-		((BuildBufferAccessor)(Object)bb).setColor(0 << 24 | (int)(b*255) << 16 | (int)(g*255) << 8 | (int)(r*255));
+		//bb.color(r, g, b);
     }
 	
 

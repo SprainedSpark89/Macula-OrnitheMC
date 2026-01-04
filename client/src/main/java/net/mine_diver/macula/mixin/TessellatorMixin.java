@@ -24,7 +24,7 @@ public class TessellatorMixin implements TessellatorAccessor {
 
     //@Shadow private boolean hasNormals;
 
-    @Shadow private int[] buffer;
+    @Shadow private float[] buffer;
 
     @Shadow private int index;
 

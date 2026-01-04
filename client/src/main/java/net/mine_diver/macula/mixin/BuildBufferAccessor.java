@@ -7,9 +7,5 @@ import com.mojang.blaze3d.vertex.BufferBuilder;
 
 @Mixin(BufferBuilder.class)
 public interface BuildBufferAccessor {
-	@Accessor("color")
-	int getColor();
-	
-	@Accessor("color")
-	void setColor(int color);
+
 }

@@ -14,7 +14,6 @@
     "GameRendererMixin",
     "LivingEntityRendererMixin",
     "TessellatorMixin",
-	"BuildBufferAccessor",
     "WorldRendererMixin",
 	"LoadingScreenMixin",
     "gui.VideoSettingsScreenMixin",
