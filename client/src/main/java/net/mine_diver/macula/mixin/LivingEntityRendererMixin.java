@@ -1,13 +1,14 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.Shaders;
-import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.EntityRenderer;
+
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(LivingEntityRenderer.class)
+@Mixin(EntityRenderer.class)
 public class LivingEntityRendererMixin {
     @Redirect(
             method = "*",

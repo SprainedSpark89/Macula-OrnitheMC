@@ -102,7 +102,7 @@ public abstract class GameRendererMixin {
     }
 
 
-    @Inject(
+    /*@Inject(
             method = "m_5195666(F)V",
             at = @At(
                     value = "INVOKE",
@@ -211,7 +211,7 @@ public abstract class GameRendererMixin {
     private void injectEndWater3(float l, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.endWater();
-    }
+    }*/
 
     /*@Inject(
             method = "renderWorld(F)V",
