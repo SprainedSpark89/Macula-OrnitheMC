@@ -347,9 +347,9 @@ public class Shaders implements ClientModInitializer{
 
         if (shadowPassInterval > 0 && --shadowPassCounter <= 0) {
             // do shadow pass
-            boolean preShadowPassThirdPersonView = MinecraftInstance.get().f_9967940.f_3094045;
+            boolean preShadowPassThirdPersonView = false; // no f5
 
-            MinecraftInstance.get().f_9967940.f_3094045 = true;
+            //MinecraftInstance.get().f_9967940.f_3094045 = true;
 
             isShadowPass = true;
             shadowPassCounter = shadowPassInterval;
@@ -364,7 +364,7 @@ public class Shaders implements ClientModInitializer{
 
             isShadowPass = false;
 
-            MinecraftInstance.get().f_9967940.f_3094045 = preShadowPassThirdPersonView;
+            //MinecraftInstance.get().f_9967940.f_3094045 = preShadowPassThirdPersonView;
         }
 
         glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, dfb);

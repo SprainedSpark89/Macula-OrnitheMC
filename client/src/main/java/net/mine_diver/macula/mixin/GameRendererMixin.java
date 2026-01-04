@@ -73,11 +73,12 @@ public abstract class GameRendererMixin {
     @Inject(
     		method = "m_5195666(F)V",
     	    at = @At(
-    	        value = "FIELD", 
-    	        target = "Lnet/minecraft/client/render/GameRenderer;viewDistance:F", 
-    	        opcode = Opcodes.PUTFIELD,
+    	        value = "INVOKE", 
+    	        target = "Lorg/lwjgl/opengl/GL11;glTranslatef(FFF)V", 
+    	        ordinal = 3,
     	        shift = At.Shift.BEFORE
-    	    )
+    	    ),
+    	    remap = false
     	)
     private void setClearColor(float tickDelta, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
@@ -85,13 +86,14 @@ public abstract class GameRendererMixin {
     }
 
     @Inject(
-            method = "m_5195666(F)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/Frustum;compute()Lnet/minecraft/client/render/FrustumData;",
-                    shift = At.Shift.BEFORE
-            )
-    )
+    		method = "m_5195666(F)V",
+    	    at = @At(
+    	        value = "INVOKE", 
+    	        target = "Lorg/lwjgl/opengl/GL11;glTranslatef(FFF)V", 
+    	        ordinal = 3,
+    	        shift = At.Shift.AFTER
+    	    ), remap = false
+    	)
     private void setCamera(float tickDelta, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setCamera(0);
