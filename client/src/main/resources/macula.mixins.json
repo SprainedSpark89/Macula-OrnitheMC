@@ -16,7 +16,7 @@
     "TessellatorMixin",
 	"BuildBufferAccessor",
     "WorldRendererMixin",
-	
+	"LoadingScreenMixin",
     "gui.VideoSettingsScreenMixin",
 	"MinecraftMixin"
   ],

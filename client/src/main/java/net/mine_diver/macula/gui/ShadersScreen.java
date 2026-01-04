@@ -154,7 +154,7 @@ public class ShadersScreen extends Screen {
         int debugWidth = textRenderer.getWidth(debug);
         if (debugWidth < width - 5)
         	drawCenteredString(textRenderer, debug, width / 2, height - 40, 0x808080);
-        else drawString(textRenderer, debug, 5, height - 40, 0x808080);
+        else textRenderer.drawWithShadow(debug, 5, height - 40, 0x808080);
         super.render(i, j);
     }
 

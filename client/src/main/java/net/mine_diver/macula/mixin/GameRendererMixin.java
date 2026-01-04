@@ -1,6 +1,8 @@
 package net.mine_diver.macula.mixin;
 
 import net.mine_diver.macula.Shaders;
+import net.mine_diver.macula.util.MinecraftInstance;
+import net.minecraft.client.C_0877775;
 import net.minecraft.client.C_5664496;
 import net.minecraft.client.render.GameRenderer;
 
