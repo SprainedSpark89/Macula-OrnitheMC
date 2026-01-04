@@ -1,4 +1,4 @@
-package net.mine_diver.macula.mixin;
+/*package net.mine_diver.macula.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
@@ -9,4 +9,4 @@ import net.minecraft.world.World;
 public interface WorldAccessor {
 	@Accessor("f_6512025")
 	int getTicks();
-}
+}*/

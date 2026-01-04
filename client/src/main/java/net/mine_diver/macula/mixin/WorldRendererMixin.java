@@ -46,7 +46,7 @@ public class WorldRendererMixin {
 	
 
 
-    @Inject(
+    /*@Inject(
             method = "renderSky(F)V",
             at = @At(
                     value = "INVOKE",
@@ -57,7 +57,7 @@ public class WorldRendererMixin {
     private void onGetStarBrightness(float par1, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setCelestialPosition();
-    }
+    }*/
 
     @Redirect(
             method = "*",
