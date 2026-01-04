@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import com.mojang.blaze3d.vertex.BufferBuilder;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
@@ -35,30 +36,28 @@ public class WorldRendererMixin {
             method = "renderSky(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lorg/lwjgl/opengl/GL11;glCallList(I)V", // 0
-                    ordinal = 0,
-                    remap = false
+                    target = "Lcom/mojang/blaze3d/vertex/BufferBuilder;color(FFF)V", // 0
+                    ordinal = 0
             )
     )
-    private void noClouds(int i) {
-        //ci.cancel();
+    private void hideSky(BufferBuilder bb, float r, float g, float b) {
+		bb.color(r, g, b, 0F);
     }
 	
 
 
-	// undo indev
-    /*@Inject(
+    @Inject(
             method = "renderSky(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getStarBrightness(F)F",
+                    target = "Lnet/minecraft/world/World;m_2705875(F)F",
                     shift = At.Shift.AFTER
             )
     )
     private void onGetStarBrightness(float par1, CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
         Shaders.setCelestialPosition();
-    }*/
+    }
 
     @Redirect(
             method = "*",
