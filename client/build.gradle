@@ -5,7 +5,7 @@ project.loom {
         client {
             client()
             vmArg "-Djava.util.Arrays.useLegacyMergeSort=true"
-            vmArg "-Dfabric.gameVersion=0.31.20100130"
+            vmArg "-Dfabric.gameVersion=0.31.20100129-1452"
 			vmArg "-Dhttp.proxyHost=betacraft.uk"
 			vmArg "-Dhttp.proxyPort=11702"
         }

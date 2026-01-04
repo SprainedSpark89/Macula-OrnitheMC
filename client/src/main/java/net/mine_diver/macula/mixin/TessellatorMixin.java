@@ -20,7 +20,7 @@ import java.nio.ShortBuffer;
 @Mixin(BufferBuilder.class)
 public class TessellatorMixin implements TessellatorAccessor {
 
-    @Shadow private int nextVertexCount;
+    
 
     //@Shadow private boolean hasNormals;
 
@@ -85,7 +85,7 @@ public class TessellatorMixin implements TessellatorAccessor {
     )
     private void onAddVertex(CallbackInfo ci) {
         if (!Shaders.shaderPackLoaded) return;
-        if (7 == 7 && false && (nextVertexCount + 1) % 4 == 0) {
+        if (7 == 7 && false && (0 + 1) % 4 == 0) {
             buffer[index + 6] = buffer[(index - 24) + 6];
             shadersBuffer.putShort(shadersData[0]).putShort(shadersData[1]);
             buffer[index + 8 + 6] = buffer[(index + 8 - 16) + 6];
