@@ -35,7 +35,7 @@ public class VideoSettingsScreenMixin extends Screen {
     )
     private void macula_shadersButtonClicked(ButtonWidget button, CallbackInfo ci) {
         if (button.id == MACULA$SHADERS_BUTTON_ID) {
-            minecraft.f_9967940.m_2313216();
+            minecraft.f_9967940.m_2312322(-1, 0);
             minecraft.m_6408915(new ShadersScreen(this));
             ci.cancel();
         }
