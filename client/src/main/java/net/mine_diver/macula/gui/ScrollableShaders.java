@@ -134,7 +134,7 @@ class ScrollableShaders {
 		}
 	}
     
-    public void render(int mouseX, int mouseY, float tickDelta) {
+    public void render(int mouseX, int mouseY) {
 		this.renderBackground();
 		int size = this.size();
 		int innerWidth = this.width / 2 + 124;
@@ -236,18 +236,18 @@ class ScrollableShaders {
 		GL11.glShadeModel(7425);
 		GL11.glDisable(3553);
 		buffer.start();
-		buffer.color(0, 0, 0, 0);
+		buffer.color(0, 0, 0);
 		buffer.vertex((float)this.minX, (float)(this.minY + var18), 0.0F, 0.0F, 1.0F);
 		buffer.vertex((float)this.maxX, (float)(this.minY + var18), 0.0F, 1.0F, 1.0F);
-		buffer.color(0, 0, 0, 255);
+		buffer.color(0, 0, 0);
 		buffer.vertex((float)this.maxX, (float)this.minY, 0.0F, 1.0F, 0.0F);
 		buffer.vertex((float)this.minX, (float)this.minY, 0.0F, 0.0F, 0.0F);
 		buffer.end();
 		buffer.start();
-		buffer.color(0, 0, 0, 255);
+		buffer.color(0, 0, 0);
 		buffer.vertex((float)this.minX, (float)this.maxY, 0.0F, 0.0F, 1.0F);
 		buffer.vertex((float)this.maxX, (float)this.maxY, 0.0F, 1.0F, 1.0F);
-		buffer.color(0, 0, 0, 0);
+		buffer.color(0, 0, 0);
 		buffer.vertex((float)this.maxX, (float)(this.maxY - var18), 0.0F, 1.0F, 0.0F);
 		buffer.vertex((float)this.minX, (float)(this.maxY - var18), 0.0F, 0.0F, 0.0F);
 		buffer.end();
@@ -268,21 +268,21 @@ class ScrollableShaders {
 			}
 
 			buffer.start();
-			buffer.color(0, 0, 0, 255);
+			buffer.color(0, 0, 0);
 			buffer.vertex((float)innerWidth, (float)this.maxY, 0.0F, 0.0F, 1.0F);
 			buffer.vertex((float)outline, (float)this.maxY, 0.0F, 1.0F, 1.0F);
 			buffer.vertex((float)outline, (float)this.minY, 0.0F, 1.0F, 0.0F);
 			buffer.vertex((float)innerWidth, (float)this.minY, 0.0F, 0.0F, 0.0F);
 			buffer.end();
 			buffer.start();
-			buffer.color(0x80, 0x80, 0x80, 255);
+			buffer.color(0x80, 0x80, 0x80);
 			buffer.vertex((float)innerWidth, (float)(var24 + var23), 0.0F, 0.0F, 1.0F);
 			buffer.vertex((float)outline, (float)(var24 + var23), 0.0F, 1.0F, 1.0F);
 			buffer.vertex((float)outline, (float)var24, 0.0F, 1.0F, 0.0F);
 			buffer.vertex((float)innerWidth, (float)var24, 0.0F, 0.0F, 0.0F);
 			buffer.end();
 			buffer.start();
-			buffer.color(0xC0, 0xC0, 0xC0, 255);
+			buffer.color(0xC0, 0xC0, 0xC0);
 			buffer.vertex((float)innerWidth, (float)(var24 + var23 - 1), 0.0F, 0.0F, 1.0F);
 			buffer.vertex((float)(outline - 1), (float)(var24 + var23 - 1), 0.0F, 1.0F, 1.0F);
 			buffer.vertex((float)(outline - 1), (float)var24, 0.0F, 1.0F, 0.0F);
@@ -302,10 +302,10 @@ class ScrollableShaders {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		float var6 = 32.0F;
 		var5.start();
-		var5.color(0x40, 0x40, 0x40, bottomAlpha);
+		var5.color(0x40, 0x40, 0x40);
 		var5.vertex(0.0F, (float)bottom, 0.0F, 0.0F, (float)((float)bottom / var6));
 		var5.vertex((float)this.width, (float)bottom, 0.0F, (float)((float)this.width / var6), (float)((float)bottom / var6));
-		var5.color(0x40, 0x40, 0x40, topAlpha);
+		var5.color(0x40, 0x40, 0x40);
 		var5.vertex((float)this.width, (float)top, 0.0F, (float)((float)this.width / var6), (float)((float)top / var6));
 		var5.vertex(0.0F, (float)top, 0.0F, 0.0F, (float)((float)top / var6));
 		var5.end();

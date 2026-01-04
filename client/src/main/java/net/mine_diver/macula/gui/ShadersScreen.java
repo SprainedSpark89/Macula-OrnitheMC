@@ -142,9 +142,9 @@ public class ShadersScreen extends Screen {
     }
 
     @Override
-    public void render(int i, int j, float f) {
-    	drawBackgroundTexture();
-        shaderList.render(i, j, f);
+    public void render(int i, int j	) {
+    	fillGradient(0, 0, this.width, this.height, 1610941696, -1607454624);
+        shaderList.render(i, j);
         if (updateTimer <= 0) {
             shaderList.updateList();
             updateTimer += 20;
@@ -155,7 +155,7 @@ public class ShadersScreen extends Screen {
         if (debugWidth < width - 5)
         	drawCenteredString(textRenderer, debug, width / 2, height - 40, 0x808080);
         else drawString(textRenderer, debug, 5, height - 40, 0x808080);
-        super.render(i, j, f);
+        super.render(i, j);
     }
 
     @Override
