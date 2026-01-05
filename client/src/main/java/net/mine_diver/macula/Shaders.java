@@ -340,9 +340,9 @@ public class Shaders implements ClientModInitializer{
 
         if (shadowPassInterval > 0 && --shadowPassCounter <= 0) {
             // do shadow pass
-            boolean preShadowPassThirdPersonView = MinecraftInstance.get().options.debugEnabled;
+            int preShadowPassThirdPersonView = MinecraftInstance.get().options.debugEnabled;
 
-            MinecraftInstance.get().options.debugEnabled = true;
+            MinecraftInstance.get().options.debugEnabled = 1;
 
             isShadowPass = true;
             shadowPassCounter = shadowPassInterval;
