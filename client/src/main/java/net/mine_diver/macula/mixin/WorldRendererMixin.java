@@ -17,7 +17,7 @@ public class WorldRendererMixin {
             method = "renderSky(F)V",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/World;getStarBrightness(F)F",
+                    target = "Lnet/minecraft/client/world/ClientWorld;getStarBrightness(F)F",
                     shift = At.Shift.AFTER
             )
     )
