@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
@@ -41,14 +42,14 @@ public class TessellatorMixin implements TessellatorAccessor {
     }
 
     @Inject(
-            method = "end()V",
+            method = "end()I",
             at = @At(
                     value = "INVOKE",
                     target = "Lorg/lwjgl/opengl/GL11;glDrawArrays(III)V",
                     remap = false
             )
     )
-    private void onDraw1(CallbackInfo ci) {
+    private void onDraw1(CallbackInfoReturnable ci) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0) {
             ARBVertexProgram.glEnableVertexAttribArrayARB(Shaders.entityAttrib);
@@ -57,7 +58,7 @@ public class TessellatorMixin implements TessellatorAccessor {
     }
 
     @Inject(
-            method = "end()V",
+            method = "end()I",
             at = @At(
                     value = "INVOKE",
                     target = "Lorg/lwjgl/opengl/GL11;glDrawArrays(III)V",
@@ -65,7 +66,7 @@ public class TessellatorMixin implements TessellatorAccessor {
                     remap = false
             )
     )
-    private void onDraw2(CallbackInfo ci) {
+    private void onDraw2(CallbackInfoReturnable ci) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
             ARBVertexProgram.glDisableVertexAttribArrayARB(Shaders.entityAttrib);

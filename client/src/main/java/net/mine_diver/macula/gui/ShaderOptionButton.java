@@ -3,7 +3,6 @@ package net.mine_diver.macula.gui;
 import net.mine_diver.macula.Shaders;
 import net.mine_diver.macula.option.ShaderOption;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.resource.language.I18n;
 
 public class ShaderOptionButton extends ButtonWidget {
     private final ShaderOption enumShaderOption;
@@ -18,7 +17,7 @@ public class ShaderOptionButton extends ButtonWidget {
     }
     
     private static String getButtonText(final ShaderOption eso) {
-        final String nameText = I18n.translate(eso.getResourceKey()) + ": ";
+        final String nameText = eso.getResourceKey() + ": ";
         switch (eso) {
             case SHADOW_RES_MUL:
                 return nameText + ShadersScreen.toStringQuality(Shaders.configShadowResMul);
