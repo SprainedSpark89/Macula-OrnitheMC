@@ -16,7 +16,7 @@
     "TessellatorMixin",
     "WorldRendererMixin",
     "gui.VideoSettingsScreenMixin",
-	
+	"PlayerRenderMixin",
 	"MinecraftAccessor"
   ],
   "injectors": {
