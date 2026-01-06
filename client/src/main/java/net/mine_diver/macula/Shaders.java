@@ -1023,7 +1023,7 @@ public class Shaders implements ClientModInitializer{
         destroy();
         isInitialized = false;
         init();
-        MinecraftInstance.get().worldRenderer.m_6748042();
+        MinecraftInstance.get().worldRenderer.reload();
     }
 
 	@Override

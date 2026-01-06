@@ -29,7 +29,7 @@ def configure(project) {
 
 	project.ploceus {
 		if (project.environment == 'client') {
-			clientOnlyMappings()
+			//clientOnlyMappings()
 		}
 		if (project.environment == 'server') {
 			serverOnlyMappings()

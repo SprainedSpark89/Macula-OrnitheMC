@@ -4,31 +4,31 @@ import net.mine_diver.macula.gui.ShadersScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.VideoOptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.options.GameOptions;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(VideoOptionsScreen.class)
 public class VideoSettingsScreenMixin extends Screen {
     @Unique
     private static final int MACULA$SHADERS_BUTTON_ID = "macula:shaders".hashCode();
+    
+    @Shadow
+    private static GameOptions.Option[] VIDEO_OPTIONS;
 
-    @ModifyVariable(
+    @Inject(
             method = "init",
-            at = @At(
-                    value = "CONSTANT",
-                    args = "stringValue=gui.done"
-            ),
-            index = 2
+            at = @At("RETURN")
     )
-    private int macula_addShadersButton(int y) {
+    private void macula_addShadersButton(CallbackInfo cI) {
+    	int y = VIDEO_OPTIONS.length;
         //noinspection unchecked
         buttons.add(new ButtonWidget(MACULA$SHADERS_BUTTON_ID, width / 2 - 155 + y % 2 * 160, height / 6 + 24 * (y >> 1), 150, 20, "Shaders..."));
-        return y + 1;
     }
 
     @Inject(
