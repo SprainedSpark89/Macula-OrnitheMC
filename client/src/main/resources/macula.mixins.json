@@ -17,6 +17,7 @@
     "WorldRendererMixin",
     "gui.VideoSettingsScreenMixin",
 	"PlayerRenderMixin",
+	"TextureManagerAccessor",
 	"MinecraftAccessor"
   ],
   "injectors": {

@@ -4,6 +4,7 @@ package net.mine_diver.macula;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.mine_diver.macula.mixin.TextureManagerAccessor;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
@@ -486,9 +487,9 @@ public class Shaders implements ClientModInitializer{
     public static void beginTerrain() {
         useProgram(Shaders.ProgramTerrain);
         glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, ((TextureManagerAccessor)MinecraftInstance.get().textureManager).loadTexture("/terrain_nh.png"));
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, ((TextureManagerAccessor)MinecraftInstance.get().textureManager).loadTexture("/terrain_s.png"));
         glActiveTexture(GL_TEXTURE0);
     }
 
@@ -499,9 +500,9 @@ public class Shaders implements ClientModInitializer{
     public static void beginWater() {
         useProgram(Shaders.ProgramWater);
         glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_nh.png"));
+        glBindTexture(GL_TEXTURE_2D, ((TextureManagerAccessor)MinecraftInstance.get().textureManager).loadTexture("/terrain_nh.png"));
         glActiveTexture(GL_TEXTURE3);
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().textureManager.load("/terrain_s.png"));
+        glBindTexture(GL_TEXTURE_2D, ((TextureManagerAccessor)MinecraftInstance.get().textureManager).loadTexture("/terrain_s.png"));
         glActiveTexture(GL_TEXTURE0);
     }
 
