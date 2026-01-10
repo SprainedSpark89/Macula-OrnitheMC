@@ -1,4 +1,4 @@
-package net.mine_diver.macula.mixin;
+/*package net.mine_diver.macula.mixin;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
@@ -10,3 +10,4 @@ public interface TextureManagerAccessor {
 	@Invoker("load")
 	int loadTexture(String path);
 }
+*/
