@@ -625,7 +625,7 @@ public class Shaders implements ClientModInitializer{
         }
         ItemStack stack = MinecraftInstance.get().player.inventory.getMainHandStack();
         setProgramUniform1i("heldItemId", (stack == null ? -1 : Item.getId(stack.getItem())));
-        setProgramUniform1i("heldBlockLightValue", (stack == null || Item.getId(stack.getItem()) >= ((IdRegistryAccessor)Block.REGISTRY).blocks().m_2960739().size() ? 0 : Block.m_8369968((Block)Block.REGISTRY.get(Item.getId(stack.getItem())))));
+        setProgramUniform1i("heldBlockLightValue", (stack == null || ((IdRegistryAccessor)Block.REGISTRY).blocks().get(Item.getId(stack.getItem())) != null ? 0 : ((Block)Block.REGISTRY.get(Item.getId(stack.getItem()))).getLightLevel()));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
         setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.getTime() % 24000L));
