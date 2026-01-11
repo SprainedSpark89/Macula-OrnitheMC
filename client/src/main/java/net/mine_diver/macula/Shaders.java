@@ -8,6 +8,7 @@ import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resource.Identifier;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.item.ItemStack;
 
@@ -487,12 +488,12 @@ public class Shaders implements ClientModInitializer{
         useProgram(Shaders.ProgramTerrain);
         glActiveTexture(GL_TEXTURE2);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get("/terrain_nh.png").getGlId());
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get(new Identifier("/terrain_nh.png")).getGlId());
         } catch(NullPointerException e) {
         }
         glActiveTexture(GL_TEXTURE3);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get("/terrain_s.png").getGlId());
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get(new Identifier("/terrain_s.png")).getGlId());
         } catch(NullPointerException e) {
         }
         glActiveTexture(GL_TEXTURE0);
@@ -506,12 +507,12 @@ public class Shaders implements ClientModInitializer{
         useProgram(Shaders.ProgramWater);
         glActiveTexture(GL_TEXTURE2);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get("/terrain_nh.png").getGlId());
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get(new Identifier("/terrain_nh.png")).getGlId());
         } catch(NullPointerException e) {
         }
         glActiveTexture(GL_TEXTURE3);
         try {
-        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get("/terrain_s.png").getGlId());
+        glBindTexture(GL_TEXTURE_2D, MinecraftInstance.get().getTextureManager().get(new Identifier("/terrain_s.png")).getGlId());
         } catch(NullPointerException e) {
         }
         glActiveTexture(GL_TEXTURE0);
