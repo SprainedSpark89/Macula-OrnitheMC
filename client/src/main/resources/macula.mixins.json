@@ -18,6 +18,8 @@
     "gui.VideoSettingsScreenMixin",
 	"PlayerRenderMixin",
 	"MainMixin",
+	"IdRegistryAccessor",
+	"HeldItemRendererMixin",
 	"MinecraftAccessor"
   ],
   "injectors": {

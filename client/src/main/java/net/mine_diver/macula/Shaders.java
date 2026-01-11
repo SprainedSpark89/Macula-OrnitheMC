@@ -4,12 +4,14 @@ package net.mine_diver.macula;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.mine_diver.macula.mixin.IdRegistryAccessor;
 import net.mine_diver.macula.option.ShaderOption;
 import net.mine_diver.macula.util.MinecraftInstance;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resource.Identifier;
 import net.minecraft.entity.living.LivingEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import org.lwjgl.BufferUtils;
@@ -622,8 +624,8 @@ public class Shaders implements ClientModInitializer{
             }
         }
         ItemStack stack = MinecraftInstance.get().player.inventory.getMainHandStack();
-        setProgramUniform1i("heldItemId", (stack == null ? -1 : stack.itemId));
-        setProgramUniform1i("heldBlockLightValue", (stack == null || stack.itemId >= Block.BY_ID.length ? 0 : Block.LIGHT_LEVELS[stack.itemId]));
+        setProgramUniform1i("heldItemId", (stack == null ? -1 : Item.getId(stack.getItem())));
+        setProgramUniform1i("heldBlockLightValue", (stack == null || Item.getId(stack.getItem()) >= ((IdRegistryAccessor)Block.REGISTRY).blocks().m_2960739().size() ? 0 : Block.m_8369968((Block)Block.REGISTRY.get(Item.getId(stack.getItem())))));
         setProgramUniform1i("fogMode", (fogEnabled ? glGetInteger(GL_FOG_MODE) : 0));
         setProgramUniform1f("rainStrength", rainStrength);
         setProgramUniform1i("worldTime", (int)(MinecraftInstance.get().world.getTime() % 24000L));

@@ -40,7 +40,7 @@ class ScrollableShaders extends ListWidget {
     }
 
     @Override
-    protected void entryClicked(int index, boolean twice) {
+    protected void entryClicked(int index, boolean twice, int mouseX, int mouseY) {
         if (index == this.selectedIndex && this.lastClicked == this.lastClickedCached) return;
         this.selectIndex(index);
     }
@@ -61,7 +61,7 @@ class ScrollableShaders extends ListWidget {
     protected void renderBackground() {}
 
     @Override
-    protected void renderEntry(int index, int posX, int posY, int contentY, BufferBuilder tessellator) {
+    protected void renderEntry(int index, int posX, int posY, int contentY, BufferBuilder tessellator, int mouseX, int mouseY) {
         String s = this.shaderslist.get(index);
 
         if (s.equals("OFF")) {

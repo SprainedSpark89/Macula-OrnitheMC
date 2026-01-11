@@ -27,10 +27,10 @@ public class ChunkBuilderMixin {
             ),
             locals = LocalCapture.CAPTURE_FAILHARD
     )
-    private void onRenderBlockByRenderType(CallbackInfo ci, int var1 , int var2, int  var3, int  var4, int  var5, int  var6, HashSet var7, int  var8, WorldRegion var9, BlockRenderer  var10, int  var11, int  var12, int  var13, int  var14, int  var15, int  var16, int  var17, int  var18, Block var19) {
+    private void onRenderBlockByRenderType(CallbackInfo ci, int var1 , int var2, int  var3, int  var4, int  var5, int  var6, HashSet var7, int  var8, WorldRegion var9, BlockRenderer  var10, int  var11, int  var12, int  var13, int  var14, int  var15, int  var16, int  var17, Block var19) {
         if (!Shaders.shaderPackLoaded) return;
         if (Shaders.entityAttrib >= 0)
-            ((TessellatorAccessor) BufferBuilder.INSTANCE).setEntity(var19.id);
+            ((TessellatorAccessor) BufferBuilder.INSTANCE).setEntity(Block.REGISTRY.getId(var19));
     }
 
     @Inject(method = "compile()V", at = @At(value = "RETURN"))
