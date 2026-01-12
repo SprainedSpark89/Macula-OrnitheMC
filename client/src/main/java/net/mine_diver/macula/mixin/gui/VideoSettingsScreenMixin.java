@@ -28,7 +28,7 @@ public class VideoSettingsScreenMixin extends Screen {
     private void macula_addShadersButton(CallbackInfo cI) {
     	int y = VIDEO_OPTIONS.length;
         //noinspection unchecked
-        buttons.add(new ButtonWidget(MACULA$SHADERS_BUTTON_ID, width / 2 - 155 + y % 2 * 160, height / 6 + 24 * (y >> 1), 150, 20, "Shaders..."));
+        buttons.add(new ButtonWidget(MACULA$SHADERS_BUTTON_ID, width / 2 - 75, 13, 150, 20, "Shaders..."));
     }
 
     @Inject(
